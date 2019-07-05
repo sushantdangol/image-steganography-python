@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import ctypes
 
 def split(text):
     #Split the text into characters and store them in a list
@@ -33,9 +34,9 @@ Intit Code
 #Enter the text to be inserted.
 text_message = input('Enter the text:')
 
-split_text = split(text_message)
-asc_list = str_to_asc(split_text)
-bin_list = asc_to_bin(asc_list)
+split_text = split(text_message) #variable to store the characters that were splitted
+asc_list = str_to_asc(split_text) #variable to store ascii converted values
+bin_list = asc_to_bin(asc_list) #variable to store binary converted values
 
 new_img = Image.open('D:\original.jpeg')
 img_rgb = img_to_rgb(new_img)
@@ -74,14 +75,23 @@ def bin_to_rgb(img):
 
     # new_array = np.array(list_def).astype(int).reshape(img_rgb.shape)
     # return new_array
-    return np.array(list_def).reshape(img_rgb.shape)
+    return np.array(list_def, dtype=np.uint8).reshape(img_rgb.shape) #add dtype to convert fron int32 to uint8
 
 img_bin = rgb_to_bin(img_rgb)
 rgb_bin = bin_to_rgb(img_bin)
 
 # print(img_bin)
-print(rgb_bin)
+# print(rgb_bin)
+# print('----------------------------------------------------------------')
+# print(img_rgb)
 
-# modi_img = Image.fromarray(img_rgb)
-# modi_img.save('D:\modified.jpeg')
+'''To find the data type of the arrays'''
+print(rgb_bin.dtype)#data type of converted array
+print('----------------------------------------------------------------')
+print(img_rgb.dtype)#data type of original array
+##############################################################
+
+
+modi_img = Image.fromarray(rgb_bin)
+modi_img.save('D:\modified222.jpeg')
 # print(img_rgb.shape)
