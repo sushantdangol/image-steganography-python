@@ -65,14 +65,16 @@ def rgb_to_bin(img):
 
     return np.array(list_def).reshape(img_rgb.shape)
 
+#convert binary into rgb values
 def bin_to_rgb(img):
     list_def = []
 
     for x in np.nditer(img):
-        list_def.append(x)
+        list_def.append(int(str(x), 2))
 
-    new_array = np.array(list_def).reshape(img_rgb.shape)
-    return new_array.astype(int)
+    # new_array = np.array(list_def).astype(int).reshape(img_rgb.shape)
+    # return new_array
+    return np.array(list_def).reshape(img_rgb.shape)
 
 img_bin = rgb_to_bin(img_rgb)
 rgb_bin = bin_to_rgb(img_bin)
