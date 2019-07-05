@@ -1,13 +1,13 @@
 from PIL import Image
 import numpy as np
-import ctypes
 
+
+# Split the text into characters and store them in a list
 def split(text):
-    #Split the text into characters and store them in a list
     return [char for char in text]
 
+#convert the characters into their respective ASCII Value
 def str_to_asc(text):
-    #convert the characters into their respective ASCII Value
     list = []
 
     for asc in text:
@@ -15,8 +15,8 @@ def str_to_asc(text):
 
     return list
 
+#Convert the ASCII Values into binary
 def asc_to_bin(asc):
-    #Convert the ASCII Values into binary
     list = []
 
     for bin in asc:
@@ -26,20 +26,6 @@ def asc_to_bin(asc):
 
 def img_to_rgb(img):
     return np.array( img)
-
-'''
-Intit Code
-'''
-
-#Enter the text to be inserted.
-text_message = input('Enter the text:')
-
-split_text = split(text_message) #variable to store the characters that were splitted
-asc_list = str_to_asc(split_text) #variable to store ascii converted values
-bin_list = asc_to_bin(asc_list) #variable to store binary converted values
-
-new_img = Image.open('D:\original.jpeg')
-img_rgb = img_to_rgb(new_img)
 
 #Store the ASCII/String and its respective binary number in pairs
 def asc_bin():
@@ -52,9 +38,6 @@ def asc_bin():
 
     return list_a
     # return dict_a
-
-# print(asc_bin())
-# print(asc_to_bin(asc_list))
 
 #convert rgb values into binary
 def rgb_to_bin(img):
@@ -77,21 +60,43 @@ def bin_to_rgb(img):
     # return new_array
     return np.array(list_def, dtype=np.uint8).reshape(img_rgb.shape) #add dtype to convert fron int32 to uint8
 
-img_bin = rgb_to_bin(img_rgb)
-rgb_bin = bin_to_rgb(img_bin)
 
+'''
+Intit Code
+'''
+
+#Enter the text to be inserted.
+text_message = input('Enter the text:')
+
+#import image
+new_img = Image.open('D:\original.jpeg')
+
+'''Assigning variable to the converted lists'''
+img_rgb = img_to_rgb(new_img) #variable to store the list on rgb values from the image
+img_bin = rgb_to_bin(img_rgb) #variable to store the list of binary value from rgb
+rgb_bin = bin_to_rgb(img_bin) #varialble to store the list of rgb values from binary
+split_text = split(text_message) #variable to store the characters that were splitted
+asc_list = str_to_asc(split_text) #variable to store ascii converted values
+bin_list = asc_to_bin(asc_list) #variable to store binary converted values
+
+# print(asc_bin())
+# print(asc_to_bin(asc_list))s
+
+
+'''Check if the original values and converted values match or not'''
 # print(img_bin)
 # print(rgb_bin)
 # print('----------------------------------------------------------------')
 # print(img_rgb)
 
 '''To find the data type of the arrays'''
-print(rgb_bin.dtype)#data type of converted array
-print('----------------------------------------------------------------')
-print(img_rgb.dtype)#data type of original array
-##############################################################
+# print(rgb_bin.dtype)#data type of converted array
+# print('----------------------------------------------------------------')
+# print(img_rgb.dtype)#data type of original array
+#############################################################
 
 
-modi_img = Image.fromarray(rgb_bin)
-modi_img.save('D:\modified222.jpeg')
-# print(img_rgb.shape)
+'''Save the encrypted Image'''
+# modi_img = Image.fromarray(rgb_bin)
+# modi_img.save('D:\modified222.jpeg')
+# print('Image Encrypted')
