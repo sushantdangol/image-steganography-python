@@ -1,7 +1,6 @@
 from PIL import Image
 import numpy as np
 
-
 # Split the text into characters and store them in a list
 def split(text):
     return [char for char in text]
@@ -12,6 +11,15 @@ def str_to_asc(text):
 
     for asc in text:
         list.append(ord(asc))
+
+    return list
+
+#convert ascii to string
+def asc_to_str(text):
+    list = []
+
+    for st in text:
+        list.append(chr(st))
 
     return list
 
@@ -72,12 +80,14 @@ text_message = input('Enter the text:')
 new_img = Image.open('D:\original.jpeg')
 
 '''Assigning variable to the converted lists'''
-img_rgb = img_to_rgb(new_img) #variable to store the list on rgb values from the image
-img_bin = rgb_to_bin(img_rgb) #variable to store the list of binary value from rgb
-rgb_bin = bin_to_rgb(img_bin) #varialble to store the list of rgb values from binary
 split_text = split(text_message) #variable to store the characters that were splitted
 asc_list = str_to_asc(split_text) #variable to store ascii converted values
 bin_list = asc_to_bin(asc_list) #variable to store binary converted values
+
+img_rgb = img_to_rgb(new_img) #variable to store the list on rgb values from the image
+img_bin = rgb_to_bin(img_rgb) #variable to store the list of binary value from rgb
+rgb_bin = bin_to_rgb(img_bin) #varialble to store the list of rgb values from binary
+
 
 # print(asc_bin())
 # print(asc_to_bin(asc_list))s
@@ -99,4 +109,4 @@ bin_list = asc_to_bin(asc_list) #variable to store binary converted values
 '''Save the encrypted Image'''
 # modi_img = Image.fromarray(rgb_bin)
 # modi_img.save('D:\modified222.jpeg')
-# print('Image Encrypted')
+# print('Image has been Encrypted')
